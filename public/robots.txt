@@ -1,3 +1,4 @@
 # https://www.robotstxt.org/robotstxt.html
+# 给搜索引擎爬虫用
 User-agent: *
 Disallow:
