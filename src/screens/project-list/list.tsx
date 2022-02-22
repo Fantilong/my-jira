@@ -1,9 +1,18 @@
-export const List = ({ list, users }) => {
-  const usersMap = {};
-  users.forEach((user) => {
-    usersMap[user.id] = user;
-  });
+import { User } from "./seatch-panel";
 
+interface Project {
+  id: string;
+  name: string;
+  personId: string;
+  organization: string;
+  created: number;
+}
+interface ListProps {
+  list: Project[];
+  users: User[];
+}
+
+export const List = ({ list, users }: ListProps) => {
   return (
     <table>
       <thead>
@@ -16,7 +25,9 @@ export const List = ({ list, users }) => {
         {list.map((item) => (
           <tr key={item.id}>
             <td>{item.name}</td>
-            <td>{usersMap[item.personId]?.name || "未知"}</td>
+            <td>
+              {users.find((user) => user.id === item.personId)?.name || "未知"}
+            </td>
           </tr>
         ))}
       </tbody>
