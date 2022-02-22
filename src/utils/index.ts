@@ -17,6 +17,7 @@ export const cleanObject = (obj) => {
 export const useMount = (callback) => {
   useEffect(() => {
     callback();
+    // eslint-disable-next-line
   }, []);
 };
 
