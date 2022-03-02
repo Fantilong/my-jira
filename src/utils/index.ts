@@ -21,6 +21,12 @@ export const useMount = (callback: () => void) => {
   }, []);
 };
 
+export const useArray = <V>(persons: V) => {
+  let value, clear, removeIndex, add;
+
+  return { value, clear, removeIndex, add };
+};
+
 export const useDebounce = <V>(value: V, delay?: number) => {
   const [debounceValue, setDebounceValue] = useState(value);
 
