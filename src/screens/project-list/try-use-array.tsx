@@ -10,7 +10,7 @@ export const TsReacTTest = ({}) => {
     { name: "jack", age: 25 },
     { name: "ma", age: 22 },
   ];
-  const { value, clear, removeIndex, add } = useArray<Person[]>(persons);
+  const { value, add, removeIndex, clear } = useArray<Person>(persons);
 
   useMount(() => {
     // 期待这里报错：Property 'notExist' does not exist on type '{ name: string; age: number; }[]'.
@@ -24,22 +24,20 @@ export const TsReacTTest = ({}) => {
   return (
     <div>
       {/*期待: 点击以后增加 john */}
-      <button onClick={() => {}}>add john</button>
+      <button onClick={() => add({ name: "john", age: 22 })}>add john</button>
       {/*期待: 点击以后删除第一项*/}
-      <button onClick={() => {}}>remove 0</button>
+      <button onClick={() => removeIndex(0)}>remove 0</button>
       {/*期待：点击以后清空列表*/}
-      <button style={{ marginBottom: "50px" }} onClick={() => {}}>
+      <button style={{ marginBottom: "50px" }} onClick={() => clear()}>
         clear
       </button>
-      {/* {
-                value.map((person, index) => (
-                    <div style={{ marginBottom: "30px" }}>
-                        <span style={{ color: "red" }}>{index}</span>
-                        <span>{person.name}</span>
-                        <span>{person.age}</span>
-                    </div>
-                ))
-            } */}
+      {value.map((person, index) => (
+        <div style={{ marginBottom: "30px" }} key={index}>
+          <span style={{ color: "red" }}>{index} </span>
+          <span>{person.name}</span>
+          <span>{person.age}</span>
+        </div>
+      ))}
     </div>
   );
 };

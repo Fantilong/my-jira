@@ -21,10 +21,19 @@ export const useMount = (callback: () => void) => {
   }, []);
 };
 
-export const useArray = <V>(persons: V) => {
-  let value, clear, removeIndex, add;
+export const useArray = <V>(initialState: V[]) => {
+  const [value, setValue] = useState(initialState);
 
-  return { value, clear, removeIndex, add };
+  return {
+    value,
+    clear: () => setValue([]),
+    removeIndex: (index: number) => {
+      const copy = [...value];
+      copy.splice(index, 1);
+      setValue(copy);
+    },
+    add: (person: V) => setValue([...value, person]),
+  };
 };
 
 export const useDebounce = <V>(value: V, delay?: number) => {
