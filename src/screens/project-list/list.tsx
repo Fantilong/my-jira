@@ -1,4 +1,4 @@
-import { User } from "./seatch-panel";
+import { User } from "./search-panel";
 
 interface Project {
   id: string;
