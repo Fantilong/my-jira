@@ -13,24 +13,10 @@ export const ProjectListScreen = () => {
   const client = useHttp();
 
   useEffect(() => {
-    // fetch(
-    //   `${apiUrl}/projects?${qs.stringify(cleanObject(debounceParam))}`
-    // ).then(async (res) => {
-    //   if (res.ok) {
-    //     setList(await res.json());
-    //   }
-    // });
-
     client("projects", { data: cleanObject(debounceParam) }).then(setList);
   }, [debounceParam]);
 
   useMount(() => {
-    // fetch(`${apiUrl}/users`).then(async (res) => {
-    //   if (res.ok) {
-    //     setUsers(await res.json());
-    //   }
-    // });
-
     client("users").then(setUsers);
   });
 
