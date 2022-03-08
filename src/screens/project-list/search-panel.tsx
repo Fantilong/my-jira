@@ -1,4 +1,4 @@
-import { Input, Select } from "antd";
+import { Card, Input, Select, Form } from "antd";
 const Option = Select.Option;
 
 export interface User {
@@ -18,21 +18,19 @@ export const SearchPanel = ({
   users = [],
 }: SearchPanelProps) => {
   return (
-    <form>
-      <div>
-        <Input
-          value={param.name}
-          onChange={(event) => setParam({ ...param, name: event.target.value })}
-        ></Input>
-        <Select onChange={(value) => setParam({ ...param, personId: value })}>
-          <Option value={""}>负责人</Option>
-          {users?.map((user, index) => (
-            <Option key={user.id} value={user.id}>
-              {user.name}
-            </Option>
-          ))}
-        </Select>
-      </div>
-    </form>
+    <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+      <Input
+        value={param.name}
+        onChange={(event) => setParam({ ...param, name: event.target.value })}
+      />
+      <Select onChange={(value) => setParam({ ...param, personId: value })}>
+        <Option value={""}>负责人</Option>
+        {users?.map((user, index) => (
+          <Option key={user.id} value={user.id}>
+            {user.name}
+          </Option>
+        ))}
+      </Select>
+    </div>
   );
 };
