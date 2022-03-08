@@ -6,9 +6,9 @@ import { useHttp } from "utils/http";
 
 export const ProjectListScreen = () => {
   const [param, setParam] = useState({ name: "", personId: "" });
-  const [list, setList] = useState([]);
   const [users, setUsers] = useState([]);
-  const debounceParam = useDebounce(param, 500);
+  const debounceParam = useDebounce(param, 200);
+  const [list, setList] = useState([]);
 
   const client = useHttp();
 
