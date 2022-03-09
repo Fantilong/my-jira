@@ -5,22 +5,19 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { loadDevTools } from "jira-dev-tool";
+import { DevTools, loadServer } from "jira-dev-tool";
+// eslint-disable-next-line
 import "antd/dist/antd.less";
 import { AppProviders } from "./context";
 
-// const div = document.createElement('div')
-
-loadDevTools(() =>
-  // const div: HTMLElement | null = document.getElementById('div')
-
+loadServer(() =>
   ReactDOM.render(
     <React.StrictMode>
       <AppProviders>
+        <DevTools />
         <App />
       </AppProviders>
     </React.StrictMode>,
-    // div
     document.getElementById("root")
   )
 );
