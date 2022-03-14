@@ -1,23 +1,36 @@
 import React from "react";
 import { useAuth } from "context/auth-context";
 import { ProjectListScreen } from "screens/project-list";
-import { Button } from "antd";
 import styled from "@emotion/styled";
 import { Row } from "components/lib";
+import { ReactComponent as SoftWareLogo } from "assets/software-logo.svg";
+import { Menu, Dropdown, Button } from "antd";
 
 export const AuthenticateApp = () => {
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
 
   return (
     <Container>
       <Header between={true}>
         <HeaderLeft gap={true}>
-          <h2>Logo</h2>
+          <SoftWareLogo width="18rem" color="rgb(38, 132, 255)"></SoftWareLogo>
           <h2>项目</h2>
           <h2>用户</h2>
         </HeaderLeft>
         <HeaderRight>
-          <Button onClick={logout}>登出</Button>
+          <Dropdown
+            overlay={
+              <Menu>
+                <Menu.Item key="logout">
+                  <Button type="text" onClick={logout}>
+                    登出
+                  </Button>
+                </Menu.Item>
+              </Menu>
+            }
+          >
+            <Button type="text">Hi, {user?.name}</Button>
+          </Dropdown>
         </HeaderRight>
       </Header>
       <Main>
@@ -27,9 +40,9 @@ export const AuthenticateApp = () => {
   );
 };
 
-const HeaderItem = styled.h3`
-  margin-right: 3rem;
-`;
+// const HeaderItem = styled.h3`
+//   margin-right: 3rem;
+// `;
 
 const Container = styled.div`
   display: grid;
@@ -37,9 +50,11 @@ const Container = styled.div`
   height: 100vh;
 `;
 
-const Header = styled(Row)``;
-const HeaderLeft = styled(Row)``;
-const HeaderRight = styled.div`
-  background-color: red;
+const Header = styled(Row)`
+  padding: 3.2rem;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+  z-index: 1;
 `;
+const HeaderLeft = styled(Row)``;
+const HeaderRight = styled.div``;
 const Main = styled.main``;
