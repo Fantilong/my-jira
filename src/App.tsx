@@ -1,15 +1,19 @@
 import React from "react";
 import { AuthenticateApp } from "authenticated-app";
 import { useAuth } from "context/auth-context";
-import { UnauthencatedApp } from "unauthenticated-app";
 import "./App.css";
+import { UnauthencatedApp } from "unauthenticated-app";
+import { FullPageErrorFallback } from "components/lib";
+import { ErrorBoundary } from "components/error-boundary";
 
 function App() {
   const { user } = useAuth();
 
   return (
     <div className="App">
-      {user ? <AuthenticateApp /> : <UnauthencatedApp />}
+      <ErrorBoundary fallbackRender={FullPageErrorFallback}>
+        {user ? <AuthenticateApp /> : <UnauthencatedApp />}
+      </ErrorBoundary>
     </div>
   );
 }
