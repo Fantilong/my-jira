@@ -2,6 +2,9 @@ import React from "react";
 
 type FallbackRender = (props: { error: Error | null }) => React.ReactElement;
 
+// React.Component
+// 第一个参数，在该组件中 想要的属性类型
+// 第二个参数，在该组件中 state 想要的类型
 export class ErrorBoundary extends React.Component<
   React.PropsWithChildren<{ fallbackRender: FallbackRender }>,
   { error: Error | null }
