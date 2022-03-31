@@ -5,9 +5,10 @@ import styled from "@emotion/styled";
 import { Row } from "components/lib";
 import { ReactComponent as SoftWareLogo } from "assets/software-logo.svg";
 import { Menu, Dropdown, Button } from "antd";
-import { Route, Routes } from "react-router";
+import { Navigate, Route, Routes } from "react-router";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ProjectScreen } from "screens/project";
+import { resetRoute } from "utils";
 
 export const AuthenticateApp = () => {
   return (
@@ -15,11 +16,9 @@ export const AuthenticateApp = () => {
       <Main>
         <Router>
           <Routes>
-            <Route path="/projects" element={<ProjectListScreen />}></Route>
-            <Route
-              path="/projects/:projectId"
-              element={<ProjectScreen />}
-            ></Route>
+            <Route path="/projects" element={<ProjectListScreen />} />
+            <Route path="/projects/:projectId/*" element={<ProjectScreen />} />
+            {/* <Navigate to='/projects'/> */}
           </Routes>
         </Router>
       </Main>
@@ -33,7 +32,9 @@ export const PageHeader = () => {
   return (
     <Header between={true}>
       <HeaderLeft gap={true}>
-        <SoftWareLogo width="18rem" color="rgb(38, 132, 255)"></SoftWareLogo>
+        <Button type="link" onClick={resetRoute}>
+          <SoftWareLogo width="18rem" color="rgb(38, 132, 255)" />
+        </Button>
         <h2>项目</h2>
         <h2>用户</h2>
       </HeaderLeft>
